@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-Equiv="Cache-Control" Content="no-cache">
+    <meta http-Equiv="Pragma" Content="no-cache">
+    <meta http-Equiv="Expires" Content="0">
+    <script type="text/javascript"         src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript"         src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript"         src="https://code.highcharts.com/modules/annotations.js"></script>
+    <script type="text/javascript"         src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script type="text/javascript"         src="https://code.highcharts.com/modules/sankey.js"></script>
+    <script type="text/javascript"         src="https://code.highcharts.com/modules/pareto.js"></script>
+    <script type="text/javascript"         src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script type="text/javascript"         src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script>
+      $(document).ready(function() {
+            gera_grafico_VENDAS();
+     });
+     function gera_grafico_VENDAS() {
+               chart_VENDAS = new Highcharts.Chart({ 
+                chart: {renderTo: 'VENDAS', type: 'waterfall', height: 180, width:450, backgroundColor: '#E8E5E5', borderRadius:0, marginRight:30},
+                title   : { text: '' },
+                  xAxis   : { type: 'category', labels: { style: { fontSize: '10px' } } },
+                  yAxis   : { title: { text: ''}, min:0, visible:false },
+                  legend  : { enabled: false },
+                  tooltip : { pointFormat: 'Absoluto:<b>{point.vl_abs:,.0f}</b><br>Percentual:<b>{point.perc_abs:,.2f}%</b>' },
+                  exporting: {
+                    buttons: {
+                      contextButton: {menuItems: ['printChart', 'separator', 'downloadPNG', 'downloadJPEG', 'downloadPDF', 'downloadSVG', 'downloadCSV', 'downloadXLS'] }
+                    }
+                  },
+                  lang: {printChart: 'Print chart',downloadPNG: 'Download PNG',downloadJPEG: 'Download JPEG',downloadPDF: 'Download PDF',
+                          downloadSVG: 'Download SVG',contextButtonTitle: 'Context menu'},
+                  series  : [{ upColor: Highcharts.getOptions().colors[3],color: Highcharts.getOptions().colors[2],
+                              data: [ { name: 'Vendas', y: 100, perc_abs:100, vl_abs:33637,  color: '#808080'},
+                         { name: 'Vendas Débito'   , y: -11.42, perc_abs:11.42, vl_abs:3840,  color: '#808080'},
+                         { name: 'Vendas Crédito'  , isIntermediateSum: true, perc_abs:88.58, vl_abs:29797,  color: '#808080'},
+                         { name: 'Cartão A'    , y: -3.71, perc_abs:3.71, vl_abs:1248,  color: '#808080'},
+                         { name: 'Cartão B'   , y: -21.72, perc_abs:21.72, vl_abs:7305,  color: '#808080'},
+                         { name: 'Cartão C'   , isSum: true, perc_abs:63.16, vl_abs:21244,  color: '#808080'},
+                         { name: 'Canceladas (em até 120 dias)/VL'        , y: -1.06, perc_abs:1.06, vl_abs:357,  color: '#808080'},
+                         { name: 'Parceladas', y: -7.84, perc_abs:7.84, vl_abs:2636, color: '#808080'},
+                         { name: 'à Vista'         , y: -54.26, perc_abs:54.26, vl_abs:18251,  color: '#FF6D00'}, ],
+                              dataLabels: { enabled: true,
+                                            //format: '<b>{point.name}</b>:<br>{point.perc:.1f} %<br>value: {point.y}',
+                                            formatter: function () {
+                                              //return Highcharts.numberFormat(this.y / 1000, 0, ',') + 'k';
+                                              return Highcharts.numberFormat(Math.abs(this.y), 0, ',')+'%';
+                                            },
+                                            style: { color: '#FFFFFF',fontFamily: 'Simplon BP'}
+                                          },
+                              pointPadding: 0
+                            }],
+                  annotations: 
+                              [{   
+                                labels: [ {point: { xAxis: 0,
+                                  yAxis: 0,
+                                  x: 0,
+                                  y: 100
+                                },
+                                shape: 'circle',
+                                text: '34K',
+                                backgroundColor: 'white'
+                        },
+                        {point: { xAxis: 0,
+                                  yAxis: 0,
+                                  x: 1,
+                                  y: 100
+                                },
+                                shape: 'circle',
+                                text: '4K',
+                                backgroundColor: 'white'
+                        },
+                        {point: { xAxis: 0,
+                                  yAxis: 0,
+                                  x: 2,
+                                  y: 100
+                                },
+                                shape: 'circle',
+                                text: '30K',
+                                backgroundColor: 'white'
+                        },
+                        {point: { xAxis: 0,
+                                  yAxis: 0,
+                                  x: 3,
+                                  y: 100
+                                },
+                                shape: 'circle',
+                                text: '1K',
+                                backgroundColor: 'white'
+                        },
+                        {point: { xAxis: 0,
+                                  yAxis: 0,
+                                  x: 4,
+                                  y: 100
+                                },
+                                shape: 'circle',
+                                text: '7K',
+                                backgroundColor: 'white'
+                        },
+                        {point: { xAxis: 0,
+                                  yAxis: 0,
+                                  x: 5,
+                                  y: 100
+                                },
+                                shape: 'circle',
+                                text: '21K',
+                                backgroundColor: 'white'
+                        },
+                        {point: { xAxis: 0,
+                                  yAxis: 0,
+                                  x: 6,
+                                  y: 100
+                                },
+                                shape: 'circle',
+                                text: '0K',
+                                backgroundColor: 'white'
+                        },
+                        {point: { xAxis: 0,
+                                  yAxis: 0,
+                                  x: 7,
+                                  y: 100
+                                },
+                                shape: 'circle',
+                                text: '3K',
+                                backgroundColor: 'white'
+                        },
+                        {point: { xAxis: 0,
+                                  yAxis: 0,
+                                  x: 8,
+                                  y: 100
+                                },
+                                shape: 'circle',
+                                text: '18K',
+                                backgroundColor: 'white'
+                        }
+                         ]
+                              }]
+               });
+         } 
+     
+    </script>
+</head>
+<body>
+  <fieldset>
+       Vendas<div id='VENDAS'></div>
+  </fieldset>
+</body>
+</html>
